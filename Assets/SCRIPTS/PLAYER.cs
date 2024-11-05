@@ -9,7 +9,11 @@ public class PLAYER : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI counttext;
     public GameObject win;
+    [SerializeField] int jumpPower;
 
+    
+    
+    private bool OnFloor = false;
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -29,7 +33,12 @@ public class PLAYER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
+
+        if (Input.GetKeyDown(KeyCode.Space) && OnFloor == true) 
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
     }
 
     void OnMove(InputValue movementValue)
@@ -69,7 +78,10 @@ public class PLAYER : MonoBehaviour
             win.gameObject.SetActive(true);
             win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
         }
+        
+
     }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -82,4 +94,24 @@ public class PLAYER : MonoBehaviour
         }
         
     }
+
+    void OnTriggerStay(Collider sphere)
+    {
+        if (sphere.gameObject.CompareTag("floor"))
+        {
+            OnFloor = true;
+        }
+
+    }
+
+    void OnTriggerExit(Collider sphere)
+    {
+        if (sphere.gameObject.CompareTag("floor"))
+        {
+            OnFloor = false;
+        }
+
+    }
+
+
 }
