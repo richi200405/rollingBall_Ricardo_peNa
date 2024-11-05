@@ -11,9 +11,9 @@ public class PLAYER : MonoBehaviour
     public GameObject win;
     [SerializeField] int jumpPower;
 
-    
-    
-    private bool OnFloor = false;
+
+    public GroundCheck GroundCheck;
+    //private bool OnFloor = false;
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -28,6 +28,8 @@ public class PLAYER : MonoBehaviour
         setCountText();
 
         win.SetActive(false);
+
+        GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class PLAYER : MonoBehaviour
     {
        
 
-        if (Input.GetKeyDown(KeyCode.Space) && OnFloor == true) 
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded) 
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
@@ -95,23 +97,7 @@ public class PLAYER : MonoBehaviour
         
     }
 
-    void OnTriggerStay(Collider sphere)
-    {
-        if (sphere.gameObject.CompareTag("floor"))
-        {
-            OnFloor = true;
-        }
-
-    }
-
-    void OnTriggerExit(Collider sphere)
-    {
-        if (sphere.gameObject.CompareTag("floor"))
-        {
-            OnFloor = false;
-        }
-
-    }
+   
 
 
 }
