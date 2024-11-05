@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PLAYER : MonoBehaviour
 {
     public float speed = 0;
-
+    public TextMeshProUGUI counttext;
+    public GameObject win;
 
     private Rigidbody rb;
+    private int count;
     private float movementX;
     private float movementY;
 
@@ -16,6 +19,11 @@ public class PLAYER : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        count = 0;
+
+        setCountText();
+
+        win.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,10 +40,46 @@ public class PLAYER : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    void setCountText()
+    {
+        counttext.text = "count :" + count.ToString();
+
+        if (count >= 12)
+        {
+            win.SetActive(true);
+            Destroy(GameObject.FindGameObjectWithTag("enemy"));
+        }
+    }
+
     void FixedUpdate()
     {
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            // Destroy the current object
+            Destroy(gameObject);
+            // Update the winText to display "You Lose!"
+            win.gameObject.SetActive(true);
+            win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("pickups"))
+        {
+            other.gameObject.SetActive(false);
+            count++;
+
+            setCountText ();
+        }
+        
     }
 }
