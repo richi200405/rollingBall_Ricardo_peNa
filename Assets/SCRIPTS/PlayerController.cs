@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private Transform respawnPoint;
     //private TextMeshProUGUI counttext;
-    private MenuController interfaz;
+    private MenuController MenuController;
     private TextMeshProUGUI LIVESTEXT;
     private GameObject win;
     
@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
     {
 
         respawnPoint = GameObject.Find("respawn point").transform;
-        interfaz = GameObject.Find("canvas").GetComponent< MenuController>();
+        MenuController = GameObject.Find("canvas").GetComponent< MenuController>();
+
+
 
         rb = GetComponent<Rigidbody>();
         count = 0;
