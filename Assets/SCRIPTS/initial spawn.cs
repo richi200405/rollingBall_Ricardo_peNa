@@ -21,7 +21,10 @@ public class initialspawn : MonoBehaviour
         player1.transform.parent.GetChild(1).GetComponent<Camera>().rect = new Rect(0, 0, .5f, 1);
         player2.transform.parent.GetChild(1).GetComponent<Camera>().rect = new Rect(.5f, 0, .5f, 1);
 
-        player1.transform.GetComponent<AudioListener>().enabled = true;
+        player1.transform.parent.GetChild(1).GetComponent<Camera>().GetComponent<AudioListener>().enabled = true;
+
+        player1.GetComponent<PlayerController>().playerindex = 0;
+        player2.GetComponent<PlayerController>().playerindex = 1;
     }
 
 }   

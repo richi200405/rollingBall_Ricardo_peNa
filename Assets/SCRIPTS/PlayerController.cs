@@ -13,10 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int jumpPower;
 
 
-
+    private ScoreHandeler scoreHandeler;
     private Transform respawnPoint;
+    private MenuController menuController;
     //private TextMeshProUGUI counttext;
-    private MenuController MenuController;
     private TextMeshProUGUI LIVESTEXT;
     private GameObject win;
     
@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     {
 
         respawnPoint = GameObject.Find("respawn point").transform;
-        MenuController = GameObject.Find("canvas").GetComponent< MenuController>();
-
+        menuController = GameObject.Find("canvas").GetComponent< MenuController>();
+        scoreHandeler = GameObject.Find("canvas/count").GetComponent< ScoreHandeler>();
 
 
         rb = GetComponent<Rigidbody>();
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (count >= 12)
+        if (scoreHandeler.Score >= 12)
         {
             win.SetActive(true);
             Destroy(GameObject.FindGameObjectWithTag("enemy"));
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     void setCountText()
     {
         //counttext.text = "count :" + count.ToString();
+        menuController.addCounttext(playerindex, count);
         LIVESTEXT.text = "lives :" + lives.ToString();
 
         
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count++;
+            scoreHandeler.Score += 1;
 
             setCountText();
         }
