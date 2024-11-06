@@ -739,6 +739,7 @@ MonoBehaviour:
   speed: 10
   counttext: {fileID: 1195599238}
   win: {fileID: 2072599806}
+  GroundCheck: {fileID: 0}
   respawnPoint: {fileID: 114637268}
 --- !u!1 &240524211
 GameObject:
@@ -1245,7 +1246,7 @@ Transform:
   m_GameObject: {fileID: 611681897}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -12}
+  m_LocalPosition: {x: -0, y: 0, z: -12.25}
   m_LocalScale: {x: 0.5, y: 4, z: 20.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3488,7 +3489,7 @@ GameObject:
   - component: {fileID: 1871976892}
   m_Layer: 0
   m_Name: static enemis
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3521,7 +3522,7 @@ GameObject:
   - component: {fileID: 1896935436}
   m_Layer: 0
   m_Name: enemis
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3938,6 +3939,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 233718057403473657, guid: 42682db7e8a03c94693637e5dd7d207e,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233718057403473657, guid: 42682db7e8a03c94693637e5dd7d207e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233718057403473657, guid: 42682db7e8a03c94693637e5dd7d207e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0862161
       objectReference: {fileID: 0}
@@ -3988,13 +3999,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1462674260187678539, guid: 42682db7e8a03c94693637e5dd7d207e,
         type: 3}
+      propertyPath: m_Height
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462674260187678539, guid: 42682db7e8a03c94693637e5dd7d207e,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462674260187678539, guid: 42682db7e8a03c94693637e5dd7d207e,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1462674260187678539, guid: 42682db7e8a03c94693637e5dd7d207e,
         type: 3}
+      propertyPath: m_Center.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462674260187678539, guid: 42682db7e8a03c94693637e5dd7d207e,
+        type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2344683091284058104, guid: 42682db7e8a03c94693637e5dd7d207e,
         type: 3}

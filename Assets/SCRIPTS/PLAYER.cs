@@ -10,7 +10,7 @@ public class PLAYER : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI counttext;
     public GameObject win;
-    //public GroundCheck GroundCheck;
+    public GroundCheck GroundCheck;
     public Transform respawnPoint;
 
 
@@ -30,7 +30,7 @@ public class PLAYER : MonoBehaviour
 
         win.SetActive(false);
 
-        //GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
+        GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
     }
 
     // Update is called once per frame
@@ -38,14 +38,15 @@ public class PLAYER : MonoBehaviour
     {
 
 
-        //if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded)
-        //{
-        //    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-        //}
-
-        if (transform.position.y > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded)
         {
-            //Respawn();
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
+
+        if (transform.position.y < -10)
+        {
+            Respawn();
+
         }
     }
 
@@ -95,34 +96,34 @@ public class PLAYER : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
-            //Respawn();
-            // Destroy the current object
-            Destroy(gameObject);
-            // Update the winText to display "You Lose!"
-            win.gameObject.SetActive(true);
-            win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            Respawn();
+            //// Destroy the current object
+            //Destroy(gameObject);
+            //// Update the winText to display "You Lose!"
+            //win.gameObject.SetActive(true);
+            //win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
         }
     }
 
-    //void Respawn()
-    //{
-    //    rb.velocity = Vector3.zero;
-    //    rb.angularVelocity = Vector3.zero;
-    //    rb.Sleep();
-    //    transform.position = respawnPoint.position;
-    //}
-
-
-    
-
-
-    
-
-    
-
-    
+    void Respawn()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.Sleep();
+        transform.position = respawnPoint.position;
+    }
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
 }

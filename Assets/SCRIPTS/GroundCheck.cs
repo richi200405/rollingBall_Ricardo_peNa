@@ -20,7 +20,7 @@ public class GroundCheck : MonoBehaviour
         transform.position = ball.position + offset;
     }
 
-     void OnTriggerEnter(Collider other)
+     void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("floor"))
         {
