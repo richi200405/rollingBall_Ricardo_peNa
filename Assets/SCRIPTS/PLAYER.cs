@@ -6,14 +6,15 @@ using TMPro;
 
 public class PLAYER : MonoBehaviour
 {
+    [SerializeField] int jumpPower;
     public float speed = 0;
     public TextMeshProUGUI counttext;
     public GameObject win;
-    [SerializeField] int jumpPower;
+    //public GroundCheck GroundCheck;
+    public Transform respawnPoint;
 
 
-    public GroundCheck GroundCheck;
-    //private bool OnFloor = false;
+
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -29,19 +30,26 @@ public class PLAYER : MonoBehaviour
 
         win.SetActive(false);
 
-        GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
+        //GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-       
 
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded) 
+
+        //if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded)
+        //{
+        //    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        //}
+
+        if (transform.position.y > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            //Respawn();
         }
     }
+
+
 
     void OnMove(InputValue movementValue)
     {
@@ -50,6 +58,7 @@ public class PLAYER : MonoBehaviour
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
+
 
     void setCountText()
     {
@@ -64,26 +73,10 @@ public class PLAYER : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
+        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
     }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("enemy"))
-        {
-            // Destroy the current object
-            Destroy(gameObject);
-            // Update the winText to display "You Lose!"
-            win.gameObject.SetActive(true);
-            win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
-        }
-        
-
-    }
-
 
     void OnTriggerEnter(Collider other)
     {
@@ -92,12 +85,44 @@ public class PLAYER : MonoBehaviour
             other.gameObject.SetActive(false);
             count++;
 
-            setCountText ();
+            setCountText();
         }
-        
+
     }
 
-   
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            //Respawn();
+            // Destroy the current object
+            Destroy(gameObject);
+            // Update the winText to display "You Lose!"
+            win.gameObject.SetActive(true);
+            win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        }
+    }
+
+    //void Respawn()
+    //{
+    //    rb.velocity = Vector3.zero;
+    //    rb.angularVelocity = Vector3.zero;
+    //    rb.Sleep();
+    //    transform.position = respawnPoint.position;
+    //}
 
 
+    
+
+
+    
+
+    
+
+    
+
+
+
+    
 }
