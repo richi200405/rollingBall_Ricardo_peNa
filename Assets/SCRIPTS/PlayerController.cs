@@ -4,26 +4,36 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
-public class PLAYER : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] int jumpPower;
+    
     public float speed = 0;
-    public TextMeshProUGUI counttext;
-    public TextMeshProUGUI LIVESTEXT;
-    public GameObject win;
+    public int playerindex;
     public GroundCheck GroundCheck;
-    public Transform respawnPoint;
+    [SerializeField] int jumpPower;
 
 
-    private int lives = 3;
-    private int count;
+
+    private Transform respawnPoint;
+    //private TextMeshProUGUI counttext;
+    private MenuController interfaz;
+    private TextMeshProUGUI LIVESTEXT;
+    private GameObject win;
+    
     private Rigidbody rb;
+    private int count;
     private float movementX;
     private float movementY;
+
+    private int lives = 3;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        respawnPoint = GameObject.Find("respawn point").transform;
+        interfaz = GameObject.Find("canvas").GetComponent< MenuController>();
+
         rb = GetComponent<Rigidbody>();
         count = 0;
 
@@ -72,7 +82,7 @@ public class PLAYER : MonoBehaviour
 
     void setCountText()
     {
-        counttext.text = "count :" + count.ToString();
+        //counttext.text = "count :" + count.ToString();
         LIVESTEXT.text = "lives :" + lives.ToString();
 
         
