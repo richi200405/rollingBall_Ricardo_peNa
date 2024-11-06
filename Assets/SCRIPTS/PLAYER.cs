@@ -51,6 +51,12 @@ public class PLAYER : MonoBehaviour
             setCountText();
 
         }
+
+        if (count >= 12)
+        {
+            win.SetActive(true);
+            Destroy(GameObject.FindGameObjectWithTag("enemy"));
+        } 
     }
 
 
@@ -69,11 +75,7 @@ public class PLAYER : MonoBehaviour
         counttext.text = "count :" + count.ToString();
         LIVESTEXT.text = "lives :" + lives.ToString();
 
-        if (count >= 12)
-        {
-            win.SetActive(true);
-            Destroy(GameObject.FindGameObjectWithTag("enemy"));
-        }
+        
     }
 
     void FixedUpdate()
@@ -123,18 +125,6 @@ public class PLAYER : MonoBehaviour
         rb.Sleep();
         transform.position = respawnPoint.position;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

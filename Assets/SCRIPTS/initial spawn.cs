@@ -16,7 +16,8 @@ public class initialspawn : MonoBehaviour
         player1.transform.position = new Vector3(-2, 0.5f, 0);
         player2.transform.position = new Vector3(2, 0.5f, 0);
 
-        //player1.transform.parent;
+        //player1.transform.parent.GetChild(1)GetComponent<Camera>().rect = new Rect(0, 0, .5f, 1);
+        //player2.transform.parent.GetChild(1)GetComponent<Camera>().rect = new Rect(.5f , 0, .5f, 1);
     }
 
 }   
