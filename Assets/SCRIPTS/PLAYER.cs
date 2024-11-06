@@ -9,14 +9,15 @@ public class PLAYER : MonoBehaviour
     [SerializeField] int jumpPower;
     public float speed = 0;
     public TextMeshProUGUI counttext;
+    public TextMeshProUGUI LIVESTEXT;
     public GameObject win;
     public GroundCheck GroundCheck;
     public Transform respawnPoint;
 
 
-
-    private Rigidbody rb;
+    private int lives = 3;
     private int count;
+    private Rigidbody rb;
     private float movementX;
     private float movementY;
 
@@ -38,14 +39,16 @@ public class PLAYER : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck.isGrounded)
+        if (Input.GetButtonDown("Jump") && GroundCheck.isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
         if (transform.position.y < -10)
         {
+            lives = lives - 1;
             Respawn();
+            setCountText();
 
         }
     }
@@ -64,6 +67,7 @@ public class PLAYER : MonoBehaviour
     void setCountText()
     {
         counttext.text = "count :" + count.ToString();
+        LIVESTEXT.text = "lives :" + lives.ToString();
 
         if (count >= 12)
         {
@@ -96,13 +100,20 @@ public class PLAYER : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
+
+            lives = lives -1;
             Respawn();
-            //// Destroy the current object
-            //Destroy(gameObject);
-            //// Update the winText to display "You Lose!"
-            //win.gameObject.SetActive(true);
-            //win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            setCountText();
         }
+        else if (lives <= 0)
+        {
+            // Destroy the current object
+            Destroy(gameObject);
+            // Update the winText to display "You Lose!"
+            win.gameObject.SetActive(true);
+            win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        }
+
     }
 
     void Respawn()
