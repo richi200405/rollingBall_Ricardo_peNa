@@ -25,6 +25,8 @@ public class initialspawn : MonoBehaviour
 
         player1.GetComponent<PlayerController>().playerindex = 0;
         player2.GetComponent<PlayerController>().playerindex = 1;
+
+        player2.name = "player2";
     }
 
 }   

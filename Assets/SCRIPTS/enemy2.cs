@@ -4,17 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class enemy : MonoBehaviour
+public class enemy2 : MonoBehaviour
 {
 
-    private Transform player;
-    
+    private Transform player2;
+
     private NavMeshAgent navMeshAgent;
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+       
 
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -22,10 +21,11 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.Find("player").transform;
-        if (player != null)
+
+        player2 = GameObject.Find("player2").transform;
+        if (player2 != null)
         {
-            navMeshAgent.SetDestination(player.position);
+            navMeshAgent.SetDestination(player2.position);
         }
     }
 }

@@ -12,10 +12,9 @@ public class PlayerController : MonoBehaviour
     public GroundCheck GroundCheck;
     [SerializeField] int jumpPower;
 
-
-    private ScoreHandeler scoreHandeler;
     private Transform respawnPoint;
     private MenuController menuController;
+    private ScoreHandeler scoreHandeler;
     //private TextMeshProUGUI counttext;
     private TextMeshProUGUI LIVESTEXT;
     private GameObject win;
@@ -31,9 +30,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
-        respawnPoint = GameObject.Find("respawn point").transform;
-        menuController = GameObject.Find("canvas").GetComponent< MenuController>();
-        scoreHandeler = GameObject.Find("canvas/count").GetComponent< ScoreHandeler>();
+        respawnPoint = GameObject.Find("respawn_point").transform;
+        menuController = GameObject.Find("Canvas").GetComponent< MenuController>();
+        scoreHandeler = GameObject.Find("Canvas/counts").GetComponent< ScoreHandeler>();
 
 
         rb = GetComponent<Rigidbody>();
