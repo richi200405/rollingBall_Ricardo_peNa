@@ -55,6 +55,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
+        if (Input.GetButtonDown("Submit") && GroundCheck.isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
+
         if (transform.position.y < -10)
         {
             lives = lives - 1;
