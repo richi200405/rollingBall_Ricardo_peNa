@@ -7,9 +7,7 @@ using UnityEngine.InputSystem;
 public class initialspawn : MonoBehaviour
 {
     public GameObject prefab;
-     
 
-    // Start is called before the first frame update
     void Start()
     {
         var player1 = PlayerInput.Instantiate(prefab, 0, "WASD", 0, Keyboard.current);
@@ -28,5 +26,4 @@ public class initialspawn : MonoBehaviour
 
         player2.name = "player2";
     }
-
-}   
+}
