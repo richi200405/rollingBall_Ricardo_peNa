@@ -10,6 +10,7 @@ TagManager:
   - enemyterrain
   - cube
   - player
+  - fire
   layers:
   - Default
   - TransparentFX

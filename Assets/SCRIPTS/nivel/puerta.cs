@@ -24,11 +24,11 @@ public class DoorController : MonoBehaviour
     void Update()
     {
         //plate1.isActivated && plate2.isActivated ||
-        //if ( plateplayer1.isActivated && plateplayer2.isActivated)
-        //{
-        //    OpenDoor();
-        //}
-        if (plate1.isActivated && plate2.isActivated) 
+        if ( plateplayer1.isActivated && plateplayer2.isActivated)
+        {
+            OpenDoor();
+        }
+        else if (plate1.isActivated && plate2.isActivated) 
         {
             OpenDoor();
         }
