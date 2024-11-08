@@ -5,23 +5,36 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    public TextMeshProUGUI[] counttext; 
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject finaltext;
+
+    public TextMeshProUGUI[] counttext;
+    public TextMeshProUGUI[] livestext;
+
+   
+
+    public void LoseGame() 
     {
+        finaltext.SetActive(true);
+        finaltext.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Game Over";
         
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    public void WinGame()
     {
-        
+        finaltext.SetActive(true);
+        finaltext.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "You Win";
     }
+
 
     public void addCounttext(int playerindex, int count) 
     {
         counttext[playerindex].text = "count: " + count.ToString();
     }
 
+    public void addlivestext(int playerindex, int lives)
+    {
+        livestext[playerindex].text = "lives: " + lives.ToString();
+    }
 }

@@ -6,17 +6,20 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+
+    //public
     public float speed = 0;
     public int playerindex;
     public GroundCheck GroundCheck;
     [SerializeField] int jumpPower;
 
+
+    //private
     private Transform respawnPoint;
     private MenuController menuController;
     private ScoreHandeler scoreHandeler;
-    private TextMeshProUGUI LIVESTEXT;
-    private GameObject win;
-
+    private liveshandeler liveshandeler;
+    
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -29,13 +32,14 @@ public class PlayerController : MonoBehaviour
         respawnPoint = GameObject.Find("respawn_point").transform;
         menuController = GameObject.Find("Canvas").GetComponent<MenuController>();
         scoreHandeler = GameObject.Find("Canvas/counts").GetComponent<ScoreHandeler>();
-
+        liveshandeler = GameObject.Find("Canvas/live").GetComponent<liveshandeler>();
+        
         rb = GetComponent<Rigidbody>();
         count = 0;
 
         setCountText();
 
-        win.SetActive(false);
+        
 
         GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
     }
@@ -51,8 +55,17 @@ public class PlayerController : MonoBehaviour
 
         if (scoreHandeler.Score >= 12)
         {
-            win.SetActive(true);
+            
+            menuController.WinGame();
             Destroy(GameObject.FindGameObjectWithTag("enemy"));
+        }
+
+        else if (lives <= 0)
+        {
+
+            Destroy(gameObject);
+            EndGame();
+            
         }
     }
 
@@ -74,7 +87,8 @@ public class PlayerController : MonoBehaviour
     void setCountText()
     {
         menuController.addCounttext(playerindex, count);
-        LIVESTEXT.text = "lives :" + lives.ToString();
+        menuController.addlivestext(playerindex, lives);
+        
     }
 
     void FixedUpdate()
@@ -100,15 +114,20 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("enemy"))
         {
             lives -= 1;
+            liveshandeler.live -= 1;
             Respawn();
             setCountText();
         }
-        else if (lives <= 0)
+
+        if (collision.gameObject.CompareTag("enemyterrain"))
         {
-            Destroy(gameObject);
-            win.gameObject.SetActive(true);
-            win.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            lives -= 1;
+            liveshandeler.live -= 1;
+            Respawn();
+            setCountText();
         }
+
+
     }
 
     void Respawn()
@@ -118,4 +137,14 @@ public class PlayerController : MonoBehaviour
         rb.Sleep();
         transform.position = respawnPoint.position;
     }
+
+    void EndGame() 
+    {
+        menuController.LoseGame();
+        //gameObject.SetActive(false);
+
+       
+    }
+
+   
 }

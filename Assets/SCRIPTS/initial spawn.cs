@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class initialspawn : MonoBehaviour
 {
     public GameObject prefab;
+    public Material player1Material;  // Material para el jugador 1
+    public Material player2Material;  // Material para el jugador 2
 
     void Start()
     {
@@ -25,5 +27,10 @@ public class initialspawn : MonoBehaviour
         player2.GetComponent<PlayerController>().playerindex = 1;
 
         player2.name = "player2";
+
+        player1.GetComponent<MeshRenderer>().material = player1Material;
+        player2.GetComponent<MeshRenderer>().material = player2Material;
+
+
     }
 }
