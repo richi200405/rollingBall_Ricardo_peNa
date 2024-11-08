@@ -30,7 +30,6 @@ public class firespawn : MonoBehaviour
         }
     }
 
-
     void spawnFire()
     {
         if (isfire == true)

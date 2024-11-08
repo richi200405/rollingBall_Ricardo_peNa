@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class fire : MonoBehaviour
 {
-    public GameObject enemy1;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +18,21 @@ public class fire : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("enemy"))
-        {
-            Debug.Log("si");
-            Destroy(enemy1);
-        }
+   
 
+    private void OnTriggerEnter(Collider other)
+    {
+        // Elimina el objeto que entra en el Trigger
+        Debug.Log(1);
+        if (other.CompareTag("enemy"))
+        {
+            Destroy(other.gameObject);
+        }
+            
     }
 
+
+   
 
 
 }
