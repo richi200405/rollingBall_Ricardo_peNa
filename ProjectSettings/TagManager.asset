@@ -9,6 +9,7 @@ TagManager:
   - floor
   - enemyterrain
   - cube
+  - player
   layers:
   - Default
   - TransparentFX
