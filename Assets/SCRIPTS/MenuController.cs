@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -10,8 +12,33 @@ public class MenuController : MonoBehaviour
 
     public TextMeshProUGUI[] counttext;
     public TextMeshProUGUI[] livestext;
+    public GameObject[] PauseUI;
 
-   
+
+
+    public void TransitionScene(int level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+
+    public void Pause() 
+    {
+        Time.timeScale = 0;
+        PauseUI[0].SetActive(false);
+        PauseUI[1].SetActive(true);
+    }
+
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        PauseUI[0].SetActive(true);
+        PauseUI[1].SetActive(false);
+    }
+
+
+
 
     public void LoseGame() 
     {

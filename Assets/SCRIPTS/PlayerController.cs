@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private MenuController menuController;
     private ScoreHandeler scoreHandeler;
     private liveshandeler liveshandeler;
-    
+
+    private AudioSource pop;
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -29,11 +30,15 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
+
         respawnPoint = GameObject.Find("respawn_point").transform;
         menuController = GameObject.Find("Canvas").GetComponent<MenuController>();
         scoreHandeler = GameObject.Find("Canvas/counts").GetComponent<ScoreHandeler>();
         liveshandeler = GameObject.Find("Canvas/live").GetComponent<liveshandeler>();
-        
+        pop = GetComponent<AudioSource>(); 
+
+
         rb = GetComponent<Rigidbody>();
         count = 0;
 
@@ -58,14 +63,16 @@ public class PlayerController : MonoBehaviour
             
             menuController.WinGame();
             Destroy(GameObject.FindGameObjectWithTag("enemy"));
+            Time.timeScale = 0;
         }
 
         else if (lives <= 0)
         {
-
+            Destroy(GameObject.FindGameObjectWithTag("enemy"));
             Destroy(gameObject);
             EndGame();
-            
+            Time.timeScale = 0;
+
         }
     }
 
@@ -104,6 +111,8 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count++;
             scoreHandeler.Score += 1;
+            pop.Play();
+
 
             setCountText();
         }
@@ -141,8 +150,7 @@ public class PlayerController : MonoBehaviour
     void EndGame() 
     {
         menuController.LoseGame();
-        //gameObject.SetActive(false);
-
+        
        
     }
 
