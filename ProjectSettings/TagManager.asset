@@ -11,6 +11,7 @@ TagManager:
   - cube
   - player
   - fire
+  - health
   layers:
   - Default
   - TransparentFX

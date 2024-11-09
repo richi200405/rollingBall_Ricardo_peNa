@@ -136,6 +136,13 @@ public class PlayerController : MonoBehaviour
             setCountText();
         }
 
+        if (collision.gameObject.CompareTag("health"))
+        {
+            lives += 1;
+            liveshandeler.live += 1;
+            pop.Play();
+            setCountText();
+        }
 
     }
 

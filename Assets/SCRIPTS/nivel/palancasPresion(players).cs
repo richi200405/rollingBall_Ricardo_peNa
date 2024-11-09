@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PressurePlatePlayer : MonoBehaviour
 {
+    public GameObject PlatePlayer;
+
     public bool isActivated = false;
 
     private void OnTriggerEnter(Collider other)
