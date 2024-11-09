@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         
 
-        GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
+        //GroundCheck = transform.Find("GroundDetector").GetComponent<GroundCheck>();
     }
 
     private void Update()

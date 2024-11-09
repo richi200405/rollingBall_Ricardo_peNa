@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PressurePlatePlayer : MonoBehaviour
+public class PressurePlatePlayer2 : MonoBehaviour
 {
-  
+   
 
     public bool isActivated = false;
 
@@ -18,7 +18,7 @@ public class PressurePlatePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "player")
+        if (other.gameObject.name == "player2") 
         {
             isActivated = true;
         }
@@ -26,7 +26,7 @@ public class PressurePlatePlayer : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "player")
+        if (other.gameObject.name == "player2")
         {
             isActivated = false;
         }
