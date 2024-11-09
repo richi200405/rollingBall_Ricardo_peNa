@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/main menu.unity
     guid: e1bd8a5eab9bb9b42a267e6841a33ba2
   - enabled: 1
-    path: Assets/Scenes/jodido.unity
+    path: Assets/Scenes/1.unity
     guid: 9aa42d3648e68444d8173154c5efa3f8
   m_configObjects: {}
