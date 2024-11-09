@@ -23,7 +23,7 @@ public class fire : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Elimina el objeto que entra en el Trigger
-        Debug.Log(1);
+       
         if (other.CompareTag("enemy"))
         {
             Destroy(other.gameObject);

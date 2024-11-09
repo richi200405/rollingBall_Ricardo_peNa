@@ -19,16 +19,16 @@ public class health : MonoBehaviour
         transform.Rotate(new Vector3(1, 1, 30) * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        
-        if (collision.gameObject.CompareTag("player"))
+        if (other.gameObject.CompareTag("player"))
         {
             Destroy(gameObject);
-            
         }
-
     }
+
+    
 
 
 }

@@ -69,7 +69,10 @@ public class PlayerController : MonoBehaviour
         else if (lives <= 0)
         {
             Destroy(GameObject.FindGameObjectWithTag("enemy"));
-            Destroy(gameObject);
+            this.gameObject.SetActive (false);
+            
+
+            //Destroy(gameObject);
             EndGame();
             Time.timeScale = 0;
 
@@ -116,6 +119,14 @@ public class PlayerController : MonoBehaviour
 
             setCountText();
         }
+
+        if (other.gameObject.CompareTag("health"))
+        {
+            lives += 1;
+            liveshandeler.live += 1;
+            pop.Play();
+            setCountText();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -136,13 +147,7 @@ public class PlayerController : MonoBehaviour
             setCountText();
         }
 
-        if (collision.gameObject.CompareTag("health"))
-        {
-            lives += 1;
-            liveshandeler.live += 1;
-            pop.Play();
-            setCountText();
-        }
+        
 
     }
 
