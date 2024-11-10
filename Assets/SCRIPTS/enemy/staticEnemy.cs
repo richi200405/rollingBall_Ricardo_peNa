@@ -7,6 +7,11 @@ public class staticEnemy : MonoBehaviour
     public float speed = 0;
     public List<Transform> waypoints;
 
+
+    public Collider object1Collider; // Arrastra el collider del primer objeto aquí
+    public Collider object2Collider; // Arrastra el collider del segundo objeto aquí
+    public Collider object3Collider; // Arrastra el collider del segundo objeto aquí
+
     private int waypointIndex;
     private float range;
 
@@ -15,6 +20,8 @@ public class staticEnemy : MonoBehaviour
     {
         waypointIndex = 0;
         range = 1.0f;
+
+        Physics.IgnoreCollision(object1Collider, object2Collider, object3Collider);
     }
 
     // Update is called once per frame
@@ -36,5 +43,7 @@ public class staticEnemy : MonoBehaviour
             }
         }
     }
+
+   
 
 }

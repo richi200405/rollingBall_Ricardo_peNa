@@ -292,7 +292,7 @@ MonoBehaviour:
   speed: 10
   playerindex: 0
   GroundCheck: {fileID: 8361112021862240344}
-  jumpPower: 5
+  jumpPower: 7
 --- !u!114 &7444339408209365280
 MonoBehaviour:
   m_ObjectHideFlags: 0
