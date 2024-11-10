@@ -293,6 +293,14 @@ MonoBehaviour:
   playerindex: 0
   GroundCheck: {fileID: 8361112021862240344}
   jumpPower: 7
+  audioSource: {fileID: 0}
+  soundClips:
+  - {fileID: 8300000, guid: 21e2dfaa4d081204387fb8ce67dc02d3, type: 3}
+  - {fileID: 8300000, guid: 54b1c4cda9d40434787a9b4f4e34dc10, type: 3}
+  - {fileID: 8300000, guid: bf9c0d01f4625c141a6e0220e637b021, type: 3}
+  - {fileID: 8300000, guid: 0d989663010d0944da02de12ef88d65f, type: 3}
+  - {fileID: 8300000, guid: 330c566fae745484f965994d6010ce4d, type: 3}
+  - {fileID: 8300000, guid: 1cdf918d1a57e9d4d849b11606cb3aae, type: 3}
 --- !u!114 &7444339408209365280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +390,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1cdf918d1a57e9d4d849b11606cb3aae, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

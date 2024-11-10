@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     private ScoreHandeler scoreHandeler;
     private liveshandeler liveshandeler;
 
-    private AudioSource pop;
+    private AudioSource audioSource;
+    public AudioClip[] soundClips; 
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -36,8 +37,8 @@ public class PlayerController : MonoBehaviour
         menuController = GameObject.Find("Canvas").GetComponent<MenuController>();
         scoreHandeler = GameObject.Find("Canvas/counts").GetComponent<ScoreHandeler>();
         liveshandeler = GameObject.Find("Canvas/live").GetComponent<liveshandeler>();
-        pop = GetComponent<AudioSource>(); 
-
+        audioSource = GetComponent<AudioSource>(); 
+        
 
         rb = GetComponent<Rigidbody>();
         count = 0;
@@ -58,16 +59,18 @@ public class PlayerController : MonoBehaviour
             setCountText();
         }
 
-        if (scoreHandeler.Score >= 2)
+        if (scoreHandeler.Score >= 32)
         {
-            
+            PlaySound(2);
             menuController.WinGame();
             Destroy(GameObject.FindGameObjectWithTag("enemy"));
             Time.timeScale = 0;
+            
         }
 
         else if (lives <= 0)
         {
+            PlaySound(3);
             Destroy(GameObject.FindGameObjectWithTag("enemy"));
             this.gameObject.SetActive (false);
             
@@ -107,14 +110,25 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * speed);
     }
 
-    void OnTriggerEnter(Collider other)
+
+
+    public void PlaySound(int index)
+    {
+        if (index >= 0 && index < soundClips.Length)  // Asegura que el índice sea válido
+        {
+            audioSource.clip = soundClips[index];      // Asigna el clip según el índice
+            audioSource.Play();                        // Reproduce el clip asignado
+        }
+
+    }
+        void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("pickups"))
         {
             other.gameObject.SetActive(false);
             count++;
             scoreHandeler.Score += 1;
-            pop.Play();
+            PlaySound(0);
 
 
             setCountText();
@@ -124,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             lives += 1;
             liveshandeler.live += 1;
-            pop.Play();
+            PlaySound(5);
             setCountText();
         }
 
@@ -139,7 +153,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("llave"))
         {
             other.gameObject.SetActive(false);
-            pop.Play();
+            PlaySound(1);
 
 
             setCountText();
@@ -172,6 +186,7 @@ public class PlayerController : MonoBehaviour
 
     void Respawn()
     {
+        PlaySound(4);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.Sleep();
