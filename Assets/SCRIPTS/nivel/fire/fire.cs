@@ -39,13 +39,11 @@ public class fire : MonoBehaviour
 
             Destroy(other.gameObject);
 
-            
-
-
-            
-
+           
 
         }
+
+       
 
     }
 

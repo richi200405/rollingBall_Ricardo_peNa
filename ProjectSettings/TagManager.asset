@@ -12,6 +12,7 @@ TagManager:
   - player
   - fire
   - health
+  - llave
   layers:
   - Default
   - TransparentFX

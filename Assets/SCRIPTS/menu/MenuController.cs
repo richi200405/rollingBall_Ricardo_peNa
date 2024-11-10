@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour
     public TextMeshProUGUI[] counttext;
     public TextMeshProUGUI[] livestext;
     public GameObject[] PauseUI;
-
+    
 
 
     public void TransitionScene(int level)

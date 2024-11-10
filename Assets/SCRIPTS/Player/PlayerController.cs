@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             setCountText();
         }
 
-        if (scoreHandeler.Score >= 12)
+        if (scoreHandeler.Score >= 2)
         {
             
             menuController.WinGame();
@@ -127,6 +127,25 @@ public class PlayerController : MonoBehaviour
             pop.Play();
             setCountText();
         }
+
+        if (other.gameObject.CompareTag("fire"))
+        {
+            lives -= 1;
+            liveshandeler.live -= 1;
+            Respawn();
+            setCountText();
+        }
+
+        if (other.gameObject.CompareTag("llave"))
+        {
+            other.gameObject.SetActive(false);
+            pop.Play();
+
+
+            setCountText();
+        }
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
